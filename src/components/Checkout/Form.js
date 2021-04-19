@@ -51,6 +51,10 @@ export class Form extends Component {
         }))
     }
 
+    componentDidMount = () => {
+        this.props.onFetchProduct()
+    }
+
     render() {
         return (
             <div className="container">
@@ -58,7 +62,8 @@ export class Form extends Component {
                     qty={this.state.qty}
                     total={this.state.total}
                     addQty={this.addQty}
-                    subQty={this.subQty} 
+                    subQty={this.subQty}
+                    product={this.props.product} 
                 />
                 <p>
                     Fill in the form below. We need your details for shipping purposes.

@@ -1,13 +1,27 @@
 import React, { Component } from 'react'
 
 export class Product extends Component {
-    
+    constructor(props){
+        super(props)
+    }
 
     render() {
         return (
             <div>
-                <img src={''} />
+                {
+                    (this.props.product !== null && this.props.product !== undefined) ?
+
+                    <img style={photoStyles} src={this.props.product.product_images[0].photo} />
+
+                    :
+
+                    <h1>no image</h1>
+                }
                 <table className="responsive">
+                    <tr>
+                        <td>Item</td>
+                        <td>{this.props.product.name} </td>
+                    </tr>
                     <tr>
                         <td>Price</td>
                         <td>USD18.99</td>
@@ -32,6 +46,10 @@ export class Product extends Component {
             </div>
         )
     }
+}
+
+const photoStyles = {
+    width: '100%'
 }
 
 export default Product
