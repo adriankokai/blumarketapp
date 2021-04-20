@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Product from './Product';
 import { fetchProduct } from '../../store/actions/fetchProduct'
+import { placeOrder } from '../../store/actions/placeOrder'
 import FormFields from './FormFields';
+import PaypalButton from './PaypalButton';
 
 export class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
             qty: 1,
-            total: 18.99,
+            total: 18.00,
             name: '',
             phone: '',
             email: '',
@@ -55,30 +57,68 @@ export class Form extends Component {
         this.props.onFetchProduct()
     }
 
+    handleSubmit = e => {
+        e.preventDefault();
+        const order = {
+            product: this.props.product.id,
+            qty: this.state.qty,
+            customer_address: this.state.address,
+            customer_city: this.state.city,
+            customer_postal_code: this.state.postalCode,
+            customer_region: this.state.region,
+            customer_name: this.state.name,
+            customer_phone: this.state.phone,
+            customer_email: this.state.email
+        }
+        this.props.onPlaceOrder(order)
+    }
+
     render() {
         return (
             <div className="container">
-                <Product 
-                    qty={this.state.qty}
-                    total={this.state.total}
-                    addQty={this.addQty}
-                    subQty={this.subQty}
-                    product={this.props.product} 
-                />
+                {
+                    (this.props.product !== null && this.props.product !== undefined) ?
+
+                    <Product 
+                        qty={this.state.qty}
+                        total={this.state.total}
+                        addQty={this.addQty}
+                        subQty={this.subQty}
+                        product={this.props.product} 
+                    />
+
+                    :
+
+                    <span 
+                        style={{width: '100%'}}
+                        className="btn waves"
+                    >
+                        fetching order details...
+                    </span>
+                }
+                
                 <p>
-                    Fill in the form below. We need your details for shipping purposes.
+                    Choose a payment method below:
                 </p>
                 
-                <FormFields 
-                    name={this.state.name}
-                    phone={this.state.phone}
-                    email={this.state.email}
-                    address={this.state.address}
-                    city={this.state.city}
-                    postalCode={this.state.postalCode}
-                    region={this.state.region}
-                    handleChange={this.handleChange}
-                />
+                {
+                /*
+                    <form onSubmit={this.handleSubmit} >
+                    <FormFields 
+                        name={this.state.name}
+                        phone={this.state.phone}
+                        email={this.state.email}
+                        address={this.state.address}
+                        city={this.state.city}
+                        postalCode={this.state.postalCode}
+                        region={this.state.region}
+                        handleChange={this.handleChange}
+                        placingOrder={this.props.placingOrder}
+                    />
+                    </form>
+                **/
+                }
+                <PaypalButton />
             </div>
         )
     }
@@ -86,13 +126,15 @@ export class Form extends Component {
 
 const mapStateToProps = state => {
     return {
-        product: state.fetchProduct.product
+        product: state.fetchProduct.product,
+        placingOrder: state.placeOrder.loading ? true:false
     }
 }
 
 const mapDispatchProps = dispatch => {
     return {
-        onFetchProduct: () => dispatch(fetchProduct())
+        onFetchProduct: () => dispatch(fetchProduct()),
+        onPlaceOrder: order => dispatch(placeOrder(order))
     }
 }
 

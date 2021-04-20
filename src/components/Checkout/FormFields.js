@@ -66,7 +66,28 @@ export class FormFields extends Component {
                     onChange={this.props.handleChange}
                     placeholder="region"
                 />
-                <label htmlFor="region">region</label>
+                <label htmlFor="region">region</label><br /><br />
+
+                {
+                    this.props.placingOrder ?
+
+                    <span 
+                        style={{width: '100%'}} 
+                        className="btn waves"
+                    >
+                        placing order...
+                    </span>
+
+                    :
+
+                    <input 
+                        style={{width: '100%'}}
+                        type="submit"
+                        className='btn waves' 
+                    />
+                    
+                }
+                <br /><br /><br />
             </React.Fragment>
         )
     }
