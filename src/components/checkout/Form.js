@@ -49,7 +49,7 @@ export class Form extends Component {
 
     updateTotal = () => {
         this.setState(state => ({
-            total: 18.99 * state.qty 
+            total: (18.99 * state.qty).toFixed(2) 
         }))
     }
 
@@ -118,7 +118,19 @@ export class Form extends Component {
                     </form>
                 **/
                 }
-                <PaypalButton />
+                {
+                    (this.props.product !== null && this.props.product !== undefined) ?
+
+                    <PaypalButton 
+                        total={this.state.total}
+                        qty={this.state.qty}
+                        product={this.props.product}
+                    />
+
+                    :
+
+                    'fetching payment options...'
+                }
             </div>
         )
     }

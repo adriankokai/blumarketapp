@@ -20,11 +20,19 @@ export class Product extends Component {
                     </tr>
                     <tr>
                         <td>Price</td>
-                        <td>USD13.00</td>
+                        <td>{this.props.product.price} </td>
                     </tr>
                     <tr>
-                        <td>Shipping</td>
-                        <td>5.00</td>
+                        <td>Qty</td>
+                        <td>
+                            <span className='btn' onClick={this.props.subQty} >
+                                <i className='material-icons'>remove</i>
+                            </span>
+                            {' ' + this.props.qty + ' '}
+                            <span className='btn' onClick={this.props.addQty} >
+                                <i className='material-icons'>add</i>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td>Total</td>
