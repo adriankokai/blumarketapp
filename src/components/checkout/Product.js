@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Size from './Size'
+import Color from './Color'
 
 export class Product extends Component {
     constructor(props){
@@ -22,6 +24,22 @@ export class Product extends Component {
                         <td>Price</td>
                         <td>{this.props.product.price} </td>
                     </tr>
+                    {
+                        this.props.product.id === 1 ?
+
+                            <Size 
+                                size={this.props.size} 
+                                changeSize={this.props.changeSize}
+                            />
+
+                        :
+
+                        null
+                    }
+                    <Color 
+                        color={this.props.color} 
+                        changeColor={this.props.changeColor}
+                    />
                     <tr>
                         <td>Qty</td>
                         <td>

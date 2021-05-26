@@ -18,6 +18,9 @@ export class Form extends Component {
             city: '',
             postalCode: '',
             region: '',
+            size: 'M',
+            color: 'white',
+            txnCompleted: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -52,6 +55,24 @@ export class Form extends Component {
         }))
     }
 
+    changeSize = size => {
+        this.setState({
+            size: size
+        })
+    }
+
+    changeColor = color => {
+        this.setState({
+            color: color
+        })
+    }
+
+    toggleTxnCompleted = () => {
+        this.setState(state => ({
+            txnCompleted: !state.txnCompleted
+        }))
+    }
+
     handleSubmit = e => {
         e.preventDefault();
         const order = {
@@ -80,6 +101,10 @@ export class Form extends Component {
                         addQty={this.addQty}
                         subQty={this.subQty}
                         product={this.props.product} 
+                        size={this.state.size}
+                        changeSize={this.changeSize}
+                        color={this.state.color}
+                        changeColor={this.changeColor}
                     />
 
                     :
@@ -91,10 +116,6 @@ export class Form extends Component {
                         fetching order details...
                     </span>
                 }
-                
-                <p>
-                    Choose a payment method below:
-                </p>
                 
                 {
                 /*
@@ -120,6 +141,10 @@ export class Form extends Component {
                         total={this.state.total}
                         qty={this.state.qty}
                         product={this.props.product}
+                        color={this.state.color}
+                        size={this.state.size}
+                        toggleTxnCompleted={this.toggleTxnCompleted}
+                        txnCompleted={this.state.txnCompleted}
                     />
 
                     :

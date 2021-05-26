@@ -29,7 +29,7 @@ export class PaypalButton extends Component {
                         },
                         items: [{
                             name: this.props.product.name,
-                            description: "Black M",
+                            description: this.props.color + ' ' + this.props.size,
                             sku: "sku-0001",
                             unit_amount: {
                                 currency_code: "USD",
@@ -43,6 +43,7 @@ export class PaypalButton extends Component {
             onApprove: async(data, actions) => {
                 const order = await actions.order.capture();
                 console.log(order);
+                this.props.toggleTxnCompleted()
             },
             onError: err => {
                 console.log(err)
@@ -54,7 +55,29 @@ export class PaypalButton extends Component {
     render() {
         return (
             <React.Fragment>
-                <div ref={this.paypal}></div>              
+                {
+                    this.props.txnCompleted ?
+
+                    <p className="center">
+                        <h3>Payment Completed!</h3>
+                        <p>
+                            thank you<br/>
+                            <span>
+                                your product will arrive in the next
+                                3-5 working days.
+                            </span>
+                        </p>
+                    </p>
+
+                    :
+
+                    <React.Fragment>
+                        <p>
+                            Choose a payment method below:
+                        </p>
+                        <div ref={this.paypal}></div>
+                    </React.Fragment>
+                }
             </React.Fragment>
         )
     }
