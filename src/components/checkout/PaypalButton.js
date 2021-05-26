@@ -12,10 +12,10 @@ export class PaypalButton extends Component {
                 return actions.order.create({
                     intent: 'CAPTURE',
                     purchase_units: [{
-                        reference_id: 'blu_tomy',
-                        description: "Some description",
+                        reference_id: this.props.product.id,
+                        description: this.props.product.name,
 
-                        custom_id: "Something7364",
+                        custom_id: this.props.product.id,
                         soft_descriptor: "Great description 1",
                         amount: {
                             currency_code: "USD",
@@ -28,7 +28,7 @@ export class PaypalButton extends Component {
                             }
                         },
                         items: [{
-                            name: 'plain white tee',
+                            name: this.props.product.name,
                             description: "Black M",
                             sku: "sku-0001",
                             unit_amount: {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Product from './Product';
-import { fetchProduct } from '../../store/actions/fetchProduct'
 import { placeOrder } from '../../store/actions/placeOrder'
 import FormFields from './FormFields';
 import PaypalButton from './PaypalButton';
@@ -11,7 +10,7 @@ export class Form extends Component {
         super(props);
         this.state = {
             qty: 1,
-            total: 18.00,
+            total: this.props.product.price,
             name: '',
             phone: '',
             email: '',
@@ -49,12 +48,8 @@ export class Form extends Component {
 
     updateTotal = () => {
         this.setState(state => ({
-            total: (18.99 * state.qty).toFixed(2) 
+            total: (this.props.product.price * state.qty).toFixed(2) 
         }))
-    }
-
-    componentDidMount = () => {
-        this.props.onFetchProduct()
     }
 
     handleSubmit = e => {
@@ -145,7 +140,6 @@ const mapStateToProps = state => {
 
 const mapDispatchProps = dispatch => {
     return {
-        onFetchProduct: () => dispatch(fetchProduct()),
         onPlaceOrder: order => dispatch(placeOrder(order))
     }
 }

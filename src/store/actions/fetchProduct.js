@@ -22,10 +22,10 @@ export const fetchProductFail = error => {
     }
 }
 
-export const fetchProduct = () => {
+export const fetchProduct = id => {
     return dispatch => {
         dispatch(fetchProductStart());
-        axios.get(BACKEND_URL + 'store/product/')
+        axios.get(BACKEND_URL + 'store/product/' + id + '/')
         .then(res => {
             dispatch(fetchProductSuccess(res.data))
         })

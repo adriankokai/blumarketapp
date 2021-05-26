@@ -8,7 +8,7 @@ export class Product extends Component {
     render() {
         return (
             <div>
-                <img style={photoStyles} src={this.props.product.product_images[0].photo} />
+                <img style={photoStyles} src={this.props.product.thumbnail} />
                 <table className="responsive">
                     <tr>
                         <td>Item</td>
