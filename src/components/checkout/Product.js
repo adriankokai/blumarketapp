@@ -10,6 +10,9 @@ export class Product extends Component {
     render() {
         return (
             <div>
+                <p className="center teal white-text">
+                    Free delivery! Delivery takes 3-5 working days.
+                </p>
                 <img style={photoStyles} src={this.props.product.thumbnail} />
                 <table className="responsive">
                     <tr>
