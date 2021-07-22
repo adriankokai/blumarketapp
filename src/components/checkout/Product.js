@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Size from './Size'
 import Color from './Color'
-
+import Design from './Design'
 export class Product extends Component {
     constructor(props){
         super(props)
@@ -30,10 +30,16 @@ export class Product extends Component {
                     {
                         this.props.product.id === 1 ?
 
-                            <Size 
-                                size={this.props.size} 
-                                changeSize={this.props.changeSize}
-                            />
+                            <>
+                                <Size 
+                                    size={this.props.size} 
+                                    changeSize={this.props.changeSize}
+                                />
+                                <Design
+                                    design={this.props.design}
+                                    changeDesign={this.props.changeDesign}
+                                />
+                            </>
 
                         :
 

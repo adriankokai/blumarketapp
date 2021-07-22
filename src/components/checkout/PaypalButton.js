@@ -29,7 +29,8 @@ export class PaypalButton extends Component {
                         },
                         items: [{
                             name: this.props.product.name,
-                            description: this.props.color + ' ' + this.props.size,
+                            description: this.props.color + ' ' + this.props.size + ' '
+                                            this.props.design,
                             sku: "sku-0001",
                             unit_amount: {
                                 currency_code: "USD",

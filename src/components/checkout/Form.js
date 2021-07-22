@@ -19,6 +19,7 @@ export class Form extends Component {
             postalCode: '',
             region: '',
             size: 'M',
+            design: 'printed',
             color: 'white',
             txnCompleted: false
         }
@@ -58,6 +59,12 @@ export class Form extends Component {
     changeSize = size => {
         this.setState({
             size: size
+        })
+    }
+
+    changeDesign = design => {
+        this.setState({
+            design: design
         })
     }
 
@@ -103,6 +110,8 @@ export class Form extends Component {
                         product={this.props.product} 
                         size={this.state.size}
                         changeSize={this.changeSize}
+                        design={this.state.design}
+                        changeDesign={this.state.changeDesign}
                         color={this.state.color}
                         changeColor={this.changeColor}
                     />
@@ -143,6 +152,7 @@ export class Form extends Component {
                         product={this.props.product}
                         color={this.state.color}
                         size={this.state.size}
+                        design={this.state.design}
                         toggleTxnCompleted={this.toggleTxnCompleted}
                         txnCompleted={this.state.txnCompleted}
                     />
