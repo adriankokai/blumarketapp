@@ -29,7 +29,7 @@ export class PaypalButton extends Component {
                         },
                         items: [{
                             name: this.props.product.name,
-                            description: this.props.color + ' ' + this.props.size + ' '
+                            description: this.props.color + ' ' + this.props.size + ' ' +
                                             this.props.design,
                             sku: "sku-0001",
                             unit_amount: {
@@ -74,7 +74,7 @@ export class PaypalButton extends Component {
 
                     <React.Fragment>
                         <p>
-                            Choose a payment method below:
+                            Choose a payment method and enter shipping address below:
                         </p>
                         <div ref={this.paypal}></div>
                     </React.Fragment>

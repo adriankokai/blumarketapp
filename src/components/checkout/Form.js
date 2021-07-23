@@ -111,7 +111,7 @@ export class Form extends Component {
                         size={this.state.size}
                         changeSize={this.changeSize}
                         design={this.state.design}
-                        changeDesign={this.state.changeDesign}
+                        changeDesign={this.changeDesign}
                         color={this.state.color}
                         changeColor={this.changeColor}
                     />
