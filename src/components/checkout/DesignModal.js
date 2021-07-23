@@ -68,7 +68,7 @@ class Modal extends Component {
                         <span>Printed</span>
                     </label>
                 </p>
-                <p onClick={() => this.props.changeSize("plain")}>
+                <p onClick={() => this.props.changeDesign("plain")}>
                     <label>
                         {
                             this.props.size === 'plain' ?
