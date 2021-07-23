@@ -14,7 +14,9 @@ export class Product extends Component {
                                     <span class="card-title ">{/*card title*/} </span>
                                 </div>
                                 <div class="card-content">
-                                    <p className="black-text" >{this.props.product.name} </p>
+                                    <p className="black-text" >
+                                        {this.props.product.name + ' $' + this.props.product.price}
+                                    </p>
                                 </div>
                                 <div class="card-action">
                                     <a href="#" className="btn waves" >Buy </a>
